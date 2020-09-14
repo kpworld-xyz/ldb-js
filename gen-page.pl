@@ -3,7 +3,6 @@
 use strict;
 use warnings;
 
-my $test = "asdfasdfasdf";
 my $usage = "Usage: $0 <viewport_width> <viewport_height> <canvas_width> <canvas_height> <js_file>";
 
 sub Abort
