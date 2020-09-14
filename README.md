@@ -25,12 +25,12 @@ launch(160, 120, 640, 480, init, update, render);
 
 The web page for this game can be generated with the `gen-page.pl` script.
 
-```man
-./gen-page.pl <viewport_width> <viewport_height> <canvas_width> <canvas_height>
+```xml
+./gen-page.pl <viewport_width> <viewport_height> <canvas_width> <canvas_height> <js_file>
 ```
 
 This will give you the following output (scaled up in the browser):  
-![Hello, world!](https://kpworld.xyz/helloworld.png)
+![Hello, world!](https://kpworld.xyz/ldbjs_helloworld.png)
 
 *"Oh, but it isn't versatile!"*  
 **You're** not versatile!
