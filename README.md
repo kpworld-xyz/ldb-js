@@ -16,7 +16,8 @@ function update(delta, input) {
 
 function render(screen, time, fps) {
     // Draw your graphics here.
-    screen.text("Hello, world!", 8, 8, Color.AUTO);
+	screen.wipe();
+    screen.text("Hello, world!", 8, 8);
 }
 
 // This will create a 160x120 viewport stretched out over a 640x480 canvas
@@ -26,7 +27,7 @@ launch(160, 120, 640, 480, init, update, render);
 The web page for this game can be generated with the `gen-page.pl` script.
 
 ```xml
-./gen-page.pl <viewport_width> <viewport_height> <canvas_width> <canvas_height> <js_file>
+./gen-page.pl <canvas_width> <canvas_height> <js_file>
 ```
 
 This will give you the following output (scaled up in the browser):  
