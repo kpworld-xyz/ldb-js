@@ -121,13 +121,13 @@ function lerp(start, end, percent) {
 
 function alpha(color, other) {
 	var br = ((color >> 16) & 0xFF) / 0xFF;
-	var bg = ((color >> 8 ) & 0xFF) / 0xFF;
-	var bb = ((color      ) & 0xFF) / 0xFF;
+	var bg = ((color >> 8) & 0xFF) / 0xFF;
+	var bb = ((color) & 0xFF) / 0xFF;
 
 	var fa = ((other >> 24) & 0xFF) / 0xFF;
 	var fr = ((other >> 16) & 0xFF) / 0xFF;
-	var fg = ((other >> 8 ) & 0xFF) / 0xFF;
-	var fb = ((other      ) & 0xFF) / 0xFF;
+	var fg = ((other >> 8) & 0xFF) / 0xFF;
+	var fb = ((other) & 0xFF) / 0xFF;
 
 	var r = (fr * fa + (br * (1.0 - fa))) * 0xFF;
 	var g = (fg * fa + (bg * (1.0 - fa))) * 0xFF;
