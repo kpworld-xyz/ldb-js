@@ -16,7 +16,7 @@ function update(delta, input) {
 
 function render(screen, time, fps) {
     // Draw your graphics here.
-	screen.wipe();
+    screen.wipe();
     screen.text("Hello, world!", 8, 8);
 }
 
