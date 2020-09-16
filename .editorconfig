@@ -1,0 +1,6 @@
+[*]
+insert_final_newline = true
+
+[*.{js,pl}]
+indent_style = tab
+indent_size = 4

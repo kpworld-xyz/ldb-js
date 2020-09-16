@@ -31,7 +31,7 @@ The web page for this game can be generated with the `gen-page.pl` script.
 ```
 
 This will give you the following output (scaled up in the browser):  
-![Hello, world!](https://kpworld.xyz/ldbjs_helloworld.png)
+![Hello, world!](screenshot.png)
 
 *"Oh, but it isn't versatile!"*  
 **You're** not versatile!
