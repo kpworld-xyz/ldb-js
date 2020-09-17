@@ -410,7 +410,7 @@ Bitmap.prototype.text = function(msg, x, y, color, blend) {
 
 // Core engine
 function launch(viewportWidth, viewportHeight, canvasWidth, canvasHeight, initFunc, updateFunc, renderFunc) {
-	var canvasId = "game-viewport";
+	var canvasId = 'game-viewport';
 	
 	// Setup the outer canvas, the idea here is we have a little canvas we stretch up to the size of this one
 	var outerCanvas = document.getElementById(canvasId);
