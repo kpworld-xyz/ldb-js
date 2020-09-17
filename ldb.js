@@ -164,6 +164,9 @@ function Bitmap(info) {
 				self.px[i] = c[3] << 24 | c[0] << 16 | c[1] << 8 | c[2];
 			}
 		}
+		img.onerror = function() {
+			console.log('Failed to load Bitmap: ' + img.src);
+		}
 	}
 }
 
