@@ -262,7 +262,7 @@ Bitmap.prototype.stretchCropped = function(src, x, y, w, h, cx, cy, cw, ch, blen
 
 	blend = blend || false;
 	
-	for (var i = 0; i < w + src.w - src.w; i++) {
+	for (var i = 0; i < w; i++) {
 		var xo = ~~x + i;
 		if (xo < 0 || xo >= self.w)
 			continue;
