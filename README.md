@@ -35,3 +35,7 @@ This will give you the following output (scaled up in the browser):
 
 *"Oh, but it isn't versatile!"*  
 **You're** not versatile!
+
+## How do I use it?
+
+I've written a few guides you can read on the [wiki](https://github.com/kpworld-xyz/ldb-js/wiki).
