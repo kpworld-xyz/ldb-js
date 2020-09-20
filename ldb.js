@@ -174,7 +174,7 @@ Bitmap.prototype.wipe = function(color) {
 	var self = this;
 
 	color = color || Color.BLUE;
-	
+
 	for (var i = 0; i < self.w * self.h; i++)
 		self.px[i] = color;
 }
@@ -186,7 +186,7 @@ Bitmap.prototype.set = function(index, color, blend) {
 	if (!blend && !((color >> 24) & 0xFF)) {
 		return;
 	}
-	
+
 	var src = self.px[index];
 	switch (color) {
 		// Color filters
@@ -200,9 +200,9 @@ Bitmap.prototype.set = function(index, color, blend) {
 
 Bitmap.prototype.draw = function(src, x, y, blend) {
 	var self = this;
-	
+
 	blend = blend || false;
-	
+
 	for (var i = 0; i < src.w; i++) {
 		var xo = ~~x + i;
 		if (xo < 0 || xo >= self.w)
@@ -212,7 +212,7 @@ Bitmap.prototype.draw = function(src, x, y, blend) {
 			var yo = ~~y + j;
 			if (yo < 0 || yo >= self.h)
 				continue;
-			
+
 			self.set(xo + yo * self.w, src.px[i + j * src.w], blend);
 		}
 	}
@@ -222,7 +222,7 @@ Bitmap.prototype.stretch = function(src, x, y, w, h, blend) {
 	var self = this;
 
 	blend = blend || false;
-	
+
 	for (var i = 0; i < w; i++) {
 		var xo = ~~x + i;
 		if (xo < 0 || xo >= self.w)
@@ -234,7 +234,7 @@ Bitmap.prototype.stretch = function(src, x, y, w, h, blend) {
 			if (yo < 0 || yo >= self.h)
 				continue;
 			var yf = ~~(j / (h / src.h));
-			
+
 			self.set(xo + yo * self.w, src.px[xf + yf * src.w], blend);
 		}
 	}
@@ -244,17 +244,17 @@ Bitmap.prototype.crop = function(src, x, y, cx, cy, cw, ch, blend) {
 	var self = this;
 
 	blend = blend || false;
-	
+
 	for (var i = 0; i < cw; i++) {
 		var xo = ~~x + i;
 		if (xo < 0 || xo >= self.w)
 			continue;
-		
+
 		for (var j = 0; j < ch; j++) {
 			var yo = ~~y + j;
 			if (yo < 0 || yo >= self.h)
 				continue;
-			
+
 			self.set(xo + yo * self.w, src.px[i + cx + (j + cy) * src.w], blend);
 		}
 	}
@@ -264,7 +264,7 @@ Bitmap.prototype.stretchCropped = function(src, x, y, w, h, cx, cy, cw, ch, blen
 	var self = this;
 
 	blend = blend || false;
-	
+
 	for (var i = 0; i < w; i++) {
 		var xo = ~~x + i;
 		if (xo < 0 || xo >= self.w)
@@ -276,7 +276,7 @@ Bitmap.prototype.stretchCropped = function(src, x, y, w, h, cx, cy, cw, ch, blen
 			if (yo < 0 || yo >= self.h)
 				continue;
 			var yf = ~~(j / (h / ch));
-			
+
 			self.set(xo + yo * self.w, src.px[xf + cx + (yf + cy) * src.w], blend);
 		}
 	}
@@ -286,7 +286,7 @@ Bitmap.prototype.rotate = function(src, x, y, rot, scale, blend) {
 	var self = this;
 
 	blend = blend || false;
-	
+
 	rot *= PI_RAD;
 	var cos = fcos(rot);
 	var sin = fsin(rot);
@@ -306,7 +306,7 @@ Bitmap.prototype.rotate = function(src, x, y, rot, scale, blend) {
 			continue;
 
 		var xx = (~~x + i) - adjustw / 2, yy = (~~y + j) - adjusth / 2;
-		if (xx >= 0 && yy >= 0 && xx < self.w && yy < self.h) 
+		if (xx >= 0 && yy >= 0 && xx < self.w && yy < self.h)
 			self.set(~~xx + ~~yy * self.w, src.px[xd + yd * src.w], blend);
 	}
 }
@@ -316,7 +316,7 @@ Bitmap.prototype.fill = function(x, y, w, h, color, blend) {
 
 	color = color || Color.BRIGHT_MAGENTA;
 	blend = blend || false;
-	
+
 	for (var i = 0; i < w; i++) {
 		var xo = ~~x + i;
 		if (xo < 0 || xo >= self.w)
@@ -326,7 +326,7 @@ Bitmap.prototype.fill = function(x, y, w, h, color, blend) {
 			var yo = ~~y + j;
 			if (yo < 0 || yo >= self.h)
 				continue;
-			
+
 			self.set(xo + yo * self.w, color, blend);
 		}
 	}
@@ -347,7 +347,7 @@ Bitmap.prototype.line = function(xa, ya, xb, yb, color, blend) {
 	for (;;) {
 		if (xa >= 0 && xa < self.w && ya >= 0 && ya < self.h)
 			self.set(xa + ya * self.w, color, blend);
-		if (xa == xb && ya == yb)
+		if (xa === xb && ya === yb)
 			break;
 
 		e = err;
@@ -383,14 +383,14 @@ Bitmap.prototype.text = function(msg, x, y, color, blend) {
 		return;
 
 	msg = msg.toLowerCase();
-	
+
 	for (var c = 0; c < msg.length; c++) {
 		var ci = fontChars.indexOf(msg.charAt(c));
 		if (ci < 0)
 			continue;
-		
+
 		var cx = (ci % 34) * 8, cy = ~~(ci / 34) * 8;
-		
+
 		for (var i = 0; i < 8; i++) {
 			var xo = (~~x + c * 8) + i;
 			if (xo < 0 || xo >= self.w)
@@ -400,18 +400,18 @@ Bitmap.prototype.text = function(msg, x, y, color, blend) {
 				var yo = ~~y + j;
 				if (yo < 0 || yo >= self.h)
 					continue;
-				
+
 				if (this.fontSheet.px[i + cx + (j + cy) * this.fontSheet.w] === Color.WHITE)
 					self.set(xo + yo * self.w, color, blend);
 			}
 		}
-	};
+	}
 }
 
 // Core engine
 function launch(viewportWidth, viewportHeight, canvasWidth, canvasHeight, initFunc, updateFunc, renderFunc) {
 	var canvasId = 'game-viewport';
-	
+
 	// Setup the outer canvas, the idea here is we have a little canvas we stretch up to the size of this one
 	var outerCanvas = document.getElementById(canvasId);
 	outerCanvas.width = canvasWidth;
@@ -456,7 +456,7 @@ function launch(viewportWidth, viewportHeight, canvasWidth, canvasHeight, initFu
 		inputState.mouseX = parseInt(e.clientX - offset.left) / (canvasWidth / viewportWidth);
 		inputState.mouseY = parseInt(e.clientY - offset.top) / (canvasHeight / viewportHeight);
 	}, false);
-	
+
 	outerCanvas.addEventListener('focusout', function(e) {
 		for (var i = 0; i < inputState.keys.length; i++)
 			inputState.keys[i] = false;
@@ -472,46 +472,47 @@ function launch(viewportWidth, viewportHeight, canvasWidth, canvasHeight, initFu
 
 	// Initialize the game
 	initFunc();
+	
+	window.addEventListener('load', function() {
+		// Main game loop
+		var ticks = 0;
+		var adjustedTicks = 0;
+		var lastTime = 0;
+		var fps = 0;
+		(function tick(timeStamp) {
+			var deltaTime = 0;
+			if (lastTime) {
+				deltaTime = timeStamp - lastTime;
+				adjustedTicks += 0.09 * deltaTime;
 
-	// Main game loop
-	var ticks = 0;
-	var adjustedTicks = 0;
-	var lastTime = 0;
-	var fps = 0;
-	(function tick(timeStamp) {
-		var deltaTime = 0;
-		if (lastTime) {
-			deltaTime = timeStamp - lastTime;
-			adjustedTicks += 0.09 * deltaTime;
-			
-			// Update
-			updateFunc(deltaTime, inputState);
-			
-			if (ticks++ % 60 === 0)
-				fps = Math.round(10 * (1000 / deltaTime)) / 10;
-		}
-		lastTime = timeStamp;
-		
-		// Render
-		renderFunc(viewport, adjustedTicks, fps);
+				// Update
+				updateFunc(deltaTime, inputState);
 
-		var imgData = innerCanvasCtx.createImageData(viewport.w, viewport.h);
-		for (var i = 0; i < viewport.w * viewport.h; i++) {
-			imgData.data[i * 4 + 0] = (viewport.px[i] >> 16) & 0xFF;
-			imgData.data[i * 4 + 1] = (viewport.px[i] >> 8) & 0xFF;
-			imgData.data[i * 4 + 2] = (viewport.px[i]) & 0xFF;
-			imgData.data[i * 4 + 3] = 0xFF;
-		}
+				if (ticks++ % 60 === 0)
+					fps = Math.round(10 * (1000 / deltaTime)) / 10;
+			}
+			lastTime = timeStamp;
 
-		innerCanvasCtx.putImageData(imgData, 0, 0);
+			// Render
+			renderFunc(viewport, adjustedTicks, fps);
 
-		// We want it pixely
-		outerCanvasCtx.webkitImageSmoothingEnabled = false;
-		outerCanvasCtx.msImageSmoothingEnabled = false;
-		outerCanvasCtx.imageSmoothingEnabled = false;
-		outerCanvasCtx.drawImage(innerCanvas, 0, 0, canvasWidth, canvasHeight);
+			var imgData = innerCanvasCtx.createImageData(viewport.w, viewport.h);
+			for (var i = 0; i < viewport.w * viewport.h; i++) {
+				imgData.data[i * 4 + 0] = (viewport.px[i] >> 16) & 0xFF;
+				imgData.data[i * 4 + 1] = (viewport.px[i] >> 8) & 0xFF;
+				imgData.data[i * 4 + 2] = (viewport.px[i]) & 0xFF;
+				imgData.data[i * 4 + 3] = 0xFF;
+			}
 
-		requestAnimationFrame(tick);
-	})(0);
+			innerCanvasCtx.putImageData(imgData, 0, 0);
+
+			// We want it pixely
+			outerCanvasCtx.webkitImageSmoothingEnabled = false;
+			outerCanvasCtx.msImageSmoothingEnabled = false;
+			outerCanvasCtx.imageSmoothingEnabled = false;
+			outerCanvasCtx.drawImage(innerCanvas, 0, 0, canvasWidth, canvasHeight);
+
+			requestAnimationFrame(tick);
+		})(0);
+	});
 }
-
